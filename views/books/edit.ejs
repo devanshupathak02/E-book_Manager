@@ -1,0 +1,74 @@
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center">Edit Book</h2>
+            </div>
+            <div class="card-body">
+                <form action="/books/<%= book._id %>?_method=PUT" method="POST" class="needs-validation" novalidate>
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" value="<%= book.title %>" readonly>
+                        <small class="text-muted">Title cannot be edited</small>
+                    </div>
+                    <div class="mb-3">
+                        <label for="author" class="form-label">Author</label>
+                        <input type="text" class="form-control" id="author" name="author" value="<%= book.author %>" required>
+                        <div class="invalid-feedback">
+                            Please enter the author's name.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="genre" class="form-label">Genre</label>
+                        <input type="text" class="form-control" id="genre" name="genre" value="<%= book.genre %>" required>
+                        <div class="invalid-feedback">
+                            Please enter the book genre.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="publishedDate" class="form-label">Published Date</label>
+                        <input type="date" class="form-control" id="publishedDate" name="publishedDate" value="<%= new Date(book.publishedDate).toISOString().split('T')[0] %>" required>
+                        <div class="invalid-feedback">
+                            Please select the publication date.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="rating" class="form-label">Rating (1-5)</label>
+                        <input type="number" class="form-control" id="rating" name="rating" min="1" max="5" value="<%= book.rating %>" required>
+                        <div class="invalid-feedback">
+                            Please enter a rating between 1 and 5.
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="review" class="form-label">Review</label>
+                        <textarea class="form-control" id="review" name="review" rows="4" required><%= book.review %></textarea>
+                        <div class="invalid-feedback">
+                            Please enter a review.
+                        </div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" class="btn btn-primary">Update Book</button>
+                        <a href="/books" class="btn btn-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+(function () {
+    'use strict'
+    var forms = document.querySelectorAll('.needs-validation')
+    Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+            }
+            form.classList.add('was-validated')
+        }, false)
+    })
+})()
+</script> 
