@@ -92,5 +92,4 @@ A full-stack web application for managing books with user authentication.
 - bootstrap (CDN)
 
 ## License
-
-MIT 
+@Devanshu_Pathak
